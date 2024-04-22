@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "diff-parser"
-description = "Parse a `git diff` data or `.diff` file. Access a list of properties including filenames, filepath, source-hash, target-hash and more for every file changed."
+description = "Parse git diff data or .diff file. Access a list of properties including filenames, filepath, source-hash, target-hash and more for every file changed."
 version = "1.0"
 requires-python = ">= 3.6"
 authors = [{name = "Shaik Abdus Samad", email = "shaiksamad.dev@gmail.com"},]
