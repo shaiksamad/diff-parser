@@ -23,8 +23,10 @@ from diff_parser import Diff
 # Example usage:
 diff = Diff("path/to/diff/file.diff")
 for block in diff:
-    print(block.filename)    # main.py
-    print(block.filepath)   # /path/to/main.py
+    print(block.new_filename) # main.py
+    print(block.new_filepath) # /path/to/main.py
+    print(block.old_filename) # main.py
+    print(block.old_filepath) # /path/to/main.py
     print(block.source_hash)# abcdef
     print(block.target_hash)# uvwxyz
     print(block.type)       # modified
