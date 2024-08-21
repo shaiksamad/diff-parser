@@ -27,10 +27,10 @@ for block in diff:
     print(block.new_filepath) # /path/to/main.py
     print(block.old_filename) # main.py
     print(block.old_filepath) # /path/to/main.py
-    print(block.source_hash)# abcdef
-    print(block.target_hash)# uvwxyz
-    print(block.type)       # modified
-    print(block.content)    # None (to be implemented)
+    print(block.source_hash)  # abcdef
+    print(block.target_hash)  # uvwxyz
+    print(block.type)         # modified
+    print(block.content)      # None (to be implemented)
 ```
 
 ## Contributing
