@@ -12,7 +12,7 @@ Each DiffBlock represents a single block of changes in the diff file, containing
 Example:
     diff = Diff("path/to/diff/file.diff")
     for block in diff:
-        print(block.filname)    # main.py
+        print(block.filename)    # main.py
         print(block.filepath)   # /path/to/main.py
         print(block.source_hash)# abcdef
         print(block.target_hash)# uvwxyz
