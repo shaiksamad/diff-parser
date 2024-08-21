@@ -85,6 +85,7 @@ class Diff:
             else:
                 block.append(line)
         blocks.append(block)
+        
         filediffs = list()
 
         for block in blocks:
