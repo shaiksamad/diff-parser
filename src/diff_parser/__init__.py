@@ -102,7 +102,7 @@ class Diff:
                         filediff.old_filepath = filename
                         filediff.old_filename = filename.split("/")[-1]
 
-                        filename = filenames[1]
+                        filename = fr"\{filenames[1]}"
                         filediff.new_filepath = filename
                         filediff.new_filename = filename.split("/")[-1]
                     else:
