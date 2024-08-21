@@ -52,7 +52,7 @@ class DiffBlock:
         self.content = content
 
     def __repr__(self) -> str:
-        return f"{self.source_hash} -> {self.filename} ({self.type}) -> {self.target_hash}"
+        return f"{self.source_hash} -> {self.old_filename} ({self.type}) -> {self.new_filename} {self.target_hash}"
 
 
 class Diff:
@@ -84,7 +84,6 @@ class Diff:
             if line.startswith("diff --git"):
                 if block:
                     blocks.append(block)
-                    block = None
                 block = [line, ]
             else:
                 block.append(line)
@@ -98,7 +97,7 @@ class Diff:
                 # getting filename and filepath
                 if line.startswith("diff --git"):
                     filenames = line[12:].strip().split(" b/")
-                    if len(filenames) != 2:
+                    if len(filenames) == 2:
                         filename = filenames[0]
                         filediff.old_filepath = filename
                         filediff.old_filename = filename.split("/")[-1]
