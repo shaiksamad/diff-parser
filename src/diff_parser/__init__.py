@@ -80,10 +80,11 @@ class Diff:
             if line.startswith("diff --git"):
                 if block:
                     blocks.append(block)
+                    block = None
                 block = [line,]
             else:
                 block.append(line)
-        
+        blocks.append(block)
         filediffs = list()
 
         for block in blocks:
