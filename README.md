@@ -31,6 +31,10 @@ for block in diff:
     print(block.target_hash)  # uvwxyz
     print(block.type)         # modified
     print(block.content)      # None (to be implemented)
+    print(block.old_line_start) # 1
+    print(block.old_line_count) # 2
+    print(block.new_line_start) # 2
+    print(block.new_line_count) # 3
 ```
 
 ## Contributing
