@@ -20,10 +20,10 @@ Example:
         print(block.target_hash)    # uvwxyz
         print(block.type)           # modified
         print(block.content)        # None (to be implemented)
-        print(block.old_line_start) # 1
-        print(block.old_line_count) # 2
-        print(block.new_line_start) # 2
-        print(block.new_line_count) # 3
+        print(block.original_line_start) # 1
+        print(block.original_line_count) # 2
+        print(block.modified_line_start) # 2
+        print(block.modified_line_count) # 3
 """
 
 import os
@@ -43,10 +43,10 @@ class DiffBlock:
         - source_hash (str): The source hash of the file.
         - target_hash (str): The target hash of the file.
         - content (str): The content of the diff block.
-        - old_line_start (int): The starting line number in the old file where the diff block starts.
-        - old_line_count (int): The number of lines in the old file that the diff block spans.
-        - new_line_start (int): The starting line number in the new file where the diff block starts.
-        - new_line_count (int): The number of lines in the new file that the diff block spans.
+        - original_line_start (int): The starting line number in the old file where the diff block starts.
+        - original_line_count (int): The number of lines in the old file that the diff block spans.
+        - modified_line_start (int): The starting line number in the new file where the diff block starts.
+        - modified_line_count (int): The number of lines in the new file that the diff block spans.
 
     """
     new_filename = None
@@ -57,10 +57,10 @@ class DiffBlock:
     source_hash = None
     target_hash = None
     content = None
-    old_line_start = None
-    old_line_count = None
-    new_line_start = None
-    new_line_count = None
+    original_line_start = None
+    original_line_count = None
+    modified_line_start = None
+    modified_line_count = None
 
     def __repr__(self) -> str:
         return f"{self.source_hash} -> {self.old_filename} ({self.type}) -> {self.new_filename} {self.target_hash}"
@@ -136,10 +136,10 @@ class Diff:
                     match = re.match(self.change_line_pattern, line)
 
                     if match:
-                        filediff.old_line_start = int(match.group(1))
-                        filediff.old_line_count = int(match.group(2)) if match.group(2) else 1
-                        filediff.new_line_start = int(match.group(3))
-                        filediff.new_line_count = int(match.group(4)) if match.group(4) else 1
+                        filediff.original_line_start = int(match.group(1))
+                        filediff.original_line_count = int(match.group(2)) if match.group(2) else 1
+                        filediff.modified_line_start = int(match.group(3))
+                        filediff.modified_line_count = int(match.group(4)) if match.group(4) else 1
 
             filediffs.append(filediff)
 
