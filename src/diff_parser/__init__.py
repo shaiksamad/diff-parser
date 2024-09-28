@@ -135,7 +135,8 @@ class Diff:
                     filediff.target_hash = target
 
                     # setting file mode for modified files
-                    filediff.file_mode = int(line.split()[-1])
+                    if filediff.file_mode is None:
+                        filediff.file_mode = int(line.split()[-1])
 
                 # getting file mode
                 if filediff.type in ['new', 'deleted'] and filediff.file_mode is None:
