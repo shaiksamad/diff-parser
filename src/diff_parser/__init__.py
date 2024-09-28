@@ -128,15 +128,18 @@ class Diff:
                 if "file mode" in line:
                     filediff.type = line.split()[0]
 
-                # getting file mode
-                if filediff.type in ['new', 'deleted'] and filediff.file_mode is None:
-                    filediff.file_mode = int(line.split()[-1])
-
                 # getting source and target hash
                 if line.startswith('index'):
                     source, target = line.split()[1].split("..")
                     filediff.source_hash = source
                     filediff.target_hash = target
+
+                    # setting file mode for modified files
+                    filediff.file_mode = int(line.split()[-1])
+
+                # getting file mode
+                if filediff.type in ['new', 'deleted'] and filediff.file_mode is None:
+                    filediff.file_mode = int(line.split()[-1])
 
                 # getting change line info
                 if line.startswith('@@ '):
