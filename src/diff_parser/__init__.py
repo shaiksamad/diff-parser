@@ -19,6 +19,7 @@ Example:
         print(block.source_hash)    # abcdef
         print(block.target_hash)    # uvwxyz
         print(block.type)           # modified
+        print(block.file_mode)      # 100644
         print(block.content)        # None (to be implemented)
         print(block.original_line_start) # 1
         print(block.original_line_count) # 2
@@ -40,6 +41,7 @@ class DiffBlock:
         - filename (str): The name of the file being modified.
         - filepath (str): The path of the file being modified.
         - type (str): The type of modification: 'new', 'deleted', or 'modified'.
+        - file_mode (int): The file mode represent the type and permissions of a file in a Unix-like system.
         - source_hash (str): The source hash of the file.
         - target_hash (str): The target hash of the file.
         - content (str): The content of the diff block.
@@ -54,6 +56,7 @@ class DiffBlock:
     old_filename = None
     old_filepath = None
     type = "modified"
+    file_mode = None
     source_hash = None
     target_hash = None
     content = None
@@ -130,6 +133,14 @@ class Diff:
                     source, target = line.split()[1].split("..")
                     filediff.source_hash = source
                     filediff.target_hash = target
+
+                    # setting file mode for modified files
+                    if filediff.file_mode is None:
+                        filediff.file_mode = int(line.split()[-1])
+
+                # getting file mode
+                if filediff.type in ['new', 'deleted'] and filediff.file_mode is None:
+                    filediff.file_mode = int(line.split()[-1])
 
                 # getting change line info
                 if line.startswith('@@ '):

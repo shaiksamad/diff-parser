@@ -30,6 +30,7 @@ for block in diff:
     print(block.source_hash)            # abcdef
     print(block.target_hash)            # uvwxyz
     print(block.type)                   # modified
+    print(block.file_mode)              # 100644
     print(block.content)                # None (to be implemented)
     print(block.original_line_start)    # 1
     print(block.original_line_count)    # 2
