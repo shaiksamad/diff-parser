@@ -23,19 +23,20 @@ from diff_parser import Diff
 # Example usage:
 diff = Diff("path/to/diff/file.diff")
 for block in diff:
-    print(block.new_filename)           # main.py
-    print(block.new_filepath)           # /path/to/main.py
-    print(block.old_filename)           # main.py
-    print(block.old_filepath)           # /path/to/main.py
-    print(block.source_hash)            # abcdef
-    print(block.target_hash)            # uvwxyz
-    print(block.type)                   # modified
-    print(block.file_mode)              # 100644
-    print(block.content)                # None (to be implemented)
-    print(block.original_line_start)    # 1
-    print(block.original_line_count)    # 2
-    print(block.modified_line_start)    # 2
-    print(block.modified_line_count)    # 3
+    print(block.new_filename)   # main.py
+    print(block.new_filepath)   # /path/to/main.py
+    print(block.old_filename)   # main.py
+    print(block.old_filepath)   # /path/to/main.py
+    print(block.source_hash)    # abcdef
+    print(block.target_hash)    # uvwxyz
+    print(block.type)           # modified
+    print(block.file_mode)      # 100644
+    for change in block.changes:
+        print(change.content)        # diff content
+        print(change.original_line_start) # 1
+        print(change.original_line_count) # 2
+        print(change.modified_line_start) # 2
+        print(change.modified_line_count) # 3
 ```
 
 ## Contributing
